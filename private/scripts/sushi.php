@@ -15,6 +15,14 @@ $cmd = "unzip ${path}/uploads.zip -d ${files}";
 echo ('Unzipping image files...');
 passthru($cmd);
 
+// Update links
+$host_url = $_SERVER["HTTP_HOST"];
+$new_url = "https://dev-" . $host_url;
+$old_url = "http://arcadius-product-uk.lndo.site";
+$cmd = "wp search-replace $old_url $new_url --all-tables";
+echo ('Unzipping image files...');
+passthru($cmd);
+
 // Regenerate media
 passthru('wp media regenerate --yes');
 
