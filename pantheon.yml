@@ -1,0 +1,13 @@
+# Put overrides to your pantheon.upstream.yml file here.
+# For more information, see: https://pantheon.io/docs/pantheon-yml/
+api_version: 1
+
+# Quicksilver Platform Integration Hooks
+# https://pantheon.io/docs/pantheon-yml#quicksilver
+workflows:
+  # Site Creation
+  deploy_product:
+    after:
+      - type: webphp
+        description: Reset WP site to default profile.
+        script: private/scripts/sushi.php
