@@ -18,7 +18,7 @@ passthru($cmd);
 // Update links
 $host_url = $_SERVER["HTTP_HOST"];
 echo $host_url;
-$new_url = "https://dev-" . $host_url;
+$new_url = "https://dev-arcadius-product-tokyo.pantheonsite.io";
 $old_url = "https://arcadius-product-uk.lndo.site";
 // $cmd = "wp search-replace $old_url $new_url --all-tables";
 echo ('Beginning Search and Replace...');
