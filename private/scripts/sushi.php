@@ -20,7 +20,7 @@ if (!empty($_ENV['PANTHEON_ENVIRONMENT'] && $_ENV['PANTHEON_ENVIRONMENT'] !== 'l
 
     // Get domains
     $old_domain = "https://arcadius-product-uk.lndo.site";
-    $new_domain = "https://dev-" . $_SERVER["WPCLI_URL"];
+    $new_domain = "https://" . $_SERVER["WPCLI_URL"];
 
     // Run Search Replace on WPMS sites
     echo ('Beginning Search and Replace...');
