@@ -16,7 +16,7 @@ $cmd = "unzip ${path}/uploads.zip -d ${files}";
 passthru($cmd);
 
 // Update links
-if (!empty($_ENV['PANTHEON_ENVIRONMENT'] && $_ENV['PANTHEON_ENVIRONMENT'] !== 'live') && !empty($_POST['wf_type'] && $_POST['wf_type'] == 'clone_database')) {
+if (!empty($_ENV['PANTHEON_ENVIRONMENT'] && $_ENV['PANTHEON_ENVIRONMENT'] !== 'live')) {
 
     // Get domains
     $old_domain = "https://arcadius-product-uk.lndo.site";
