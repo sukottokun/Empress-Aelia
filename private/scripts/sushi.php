@@ -17,11 +17,27 @@ passthru($cmd);
 
 // Update links
 $host_url = $_SERVER["HTTP_HOST"];
+echo $host_url;
 $new_url = "https://dev-" . $host_url;
-$old_url = "http://arcadius-product-uk.lndo.site";
-$cmd = "wp search-replace $old_url $new_url --all-tables";
-echo ('Unzipping image files...');
-passthru($cmd);
+$old_url = "https://arcadius-product-uk.lndo.site";
+// $cmd = "wp search-replace $old_url $new_url --all-tables";
+echo ('Beginning Search and Replace...');
+// passthru($cmd);
+
+if (!empty($_ENV['PANTHEON_ENVIRONMENT'] && $_ENV['PANTHEON_ENVIRONMENT'] !== 'live') && !empty($_POST['wf_type'] && $_POST['wf_type'] == 'clone_database')) {
+
+    // Get environment contexts
+    $target = $_POST['to_environment'];
+    $source = $_POST['from_environment'];
+
+    // Get domains
+    $old_domain = "https://arcadius-product-uk.lndo.site";
+    $new_domain = "https://dev-" . $host_url;
+
+    // Run Search Replace on WPMS sites
+    $cmd = "wp search-replace '{$old_domain}' '{$new_domain}' --precise --recurse-objects --all-tables --verbose --skip-columns=guid";
+    passthru($cmd);
+}
 
 // Regenerate media
 passthru('wp media regenerate --yes');
