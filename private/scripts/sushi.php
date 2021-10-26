@@ -29,6 +29,8 @@ if (!empty($_ENV['PANTHEON_ENVIRONMENT'] && $_ENV['PANTHEON_ENVIRONMENT'] !== 'l
     // Get environment contexts
     $target = $_POST['to_environment'];
     $source = $_POST['from_environment'];
+    echo $target;
+    echo $source;
 
     // Get domains
     $old_domain = "https://arcadius-product-uk.lndo.site";
