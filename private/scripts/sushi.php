@@ -2,27 +2,30 @@
 
 print("\n==== WP Reset Starting ====\n");
 
+foreach ($_SERVER as $key_name => $key_value) {
+
+    echo $key_name . " = " . $key_value . "\n";
+};
 // Get paths for imports
 $path  = $_SERVER['DOCUMENT_ROOT'] . '/private/data';
 
 // Import database
+echo ('Importing Database...');
 $cmd = "wp db import ${path}/database.sql";
 passthru($cmd);
 
 // Import media
+echo ('Unzipping image files...');
 $files = $_SERVER['HOME'] . '/files';
 $cmd = "unzip ${path}/uploads.zip -d ${files}";
-echo ('Unzipping image files...');
 passthru($cmd);
 
 // Update links
+echo ('Beginning Search and Replace...');
 $host_url = $_SERVER["HTTP_HOST"];
 echo $host_url;
 $new_url = "https://dev-arcadius-product-tokyo.pantheonsite.io";
 $old_url = "https://arcadius-product-uk.lndo.site";
-// $cmd = "wp search-replace $old_url $new_url --all-tables";
-echo ('Beginning Search and Replace...');
-// passthru($cmd);
 
 if (!empty($_ENV['PANTHEON_ENVIRONMENT'] && $_ENV['PANTHEON_ENVIRONMENT'] !== 'live') && !empty($_POST['wf_type'] && $_POST['wf_type'] == 'clone_database')) {
 
