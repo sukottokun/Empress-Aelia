@@ -32,7 +32,8 @@ if (!empty($_ENV['PANTHEON_ENVIRONMENT'] && $_ENV['PANTHEON_ENVIRONMENT'] !== 'l
 passthru('wp media regenerate --yes');
 
 // Get environment variables, create password.
-$email = $_POST['user_email'];
+echo ('Setting email address...');
+$email = "scott.massey@gmail.com";
 //$password = bin2hex(random_bytes(10));
 $password = "demo";
 
@@ -41,7 +42,7 @@ $cmd = "wp user update 1 --user_email=${email} --user_pass=${password}";
 passthru($cmd);
 
 // Reset admin password
-passthru('wp user reset-password 1');
+// passthru('wp user reset-password 1');
 
 // Clear cache, because why not.
 passthru('wp cache flush');
